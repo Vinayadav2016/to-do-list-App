@@ -1,6 +1,6 @@
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
-import { format, isValid, parse } from "date-fns";
+import { format } from "date-fns";
 import { useState } from "react";
 import "./DateContainer.scss";
 import { ErrorMsg } from "../errorMsg/ErrorMsg.js";

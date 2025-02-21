@@ -1,4 +1,4 @@
-import { format, isValid, parse, isBefore, isEqual } from "date-fns";
+import { format, isValid, parse, isBefore } from "date-fns";
 import { useState, useContext } from "react";
 import { TaskContext } from "../../../ToDoList";
 import "./InputField.scss";

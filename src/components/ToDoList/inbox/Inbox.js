@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import { TaskContext } from "../ToDoList.js";
 import { DateContainer } from "../components/dateContainer/DateContainer.js";
 import { format, isValid, parse } from "date-fns";
-import { ErrorMsg } from "../components/errorMsg/ErrorMsg.js";
 
 export function Inbox() {
   const { tasks } = useContext(TaskContext);

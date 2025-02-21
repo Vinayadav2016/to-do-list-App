@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ListOfTasks } from "../components/listOfTasks/ListOfTasks.js";
 import { TaskContext } from "../ToDoList.js";
-import { format, isValid, parse } from "date-fns";
+import { format } from "date-fns";
 export function Today() {
   const { tasks } = useContext(TaskContext);
   const todayDate = format(new Date(), "dd/MM/yyyy");
