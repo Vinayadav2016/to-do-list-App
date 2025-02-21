@@ -13,7 +13,7 @@ export function InputField(props) {
     taskId = null,
     currentTaskDescription = "",
   } = props;
-  const { addTask, editTask } = useContext(TaskContext);
+  const { updateTasks } = useContext(TaskContext);
 
   const [date, setDate] = useState(currentDate);
   const [errorMsg, setErrorMsg] = useState("");
@@ -43,9 +43,12 @@ export function InputField(props) {
       return;
     }
     if (isEdit) {
-      editTask(currentDate, taskId, taskDescription, date);
+      updateTasks({
+        type: "EDIT_TASK",
+        payload: { date: currentDate, taskId, taskDescription, newDate: date },
+      });
     } else {
-      addTask(date, taskDescription);
+      updateTasks({ type: "ADD_TASK", payload: { date, taskDescription } });
     }
     closeAddTaskDialog();
   };

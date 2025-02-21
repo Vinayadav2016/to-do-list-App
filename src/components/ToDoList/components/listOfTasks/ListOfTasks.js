@@ -2,11 +2,8 @@ import { TaskContext } from "../../ToDoList.js";
 import { useContext, useState } from "react";
 import "./ListOfTasks.scss";
 
-import { DayPicker } from "react-day-picker";
 import { FaEdit } from "react-icons/fa";
-import { MdDeleteForever, MdCancel } from "react-icons/md";
-import { IoMdSave } from "react-icons/io";
-import { format, isValid, parse, addDays } from "date-fns";
+import { MdDeleteForever } from "react-icons/md";
 import { InputField } from "../../inbox/addTask/inputField/InputField.js";
 
 function TaskContainer({
@@ -14,7 +11,7 @@ function TaskContainer({
   date,
   taskId,
 }) {
-  const { toggleTaskCompletion, deleteTask } = useContext(TaskContext);
+  const { updateTasks } = useContext(TaskContext);
   const [isEdit, setIsEdit] = useState(false);
 
   return (
@@ -43,14 +40,20 @@ function TaskContainer({
         <MdDeleteForever
           className="delete-icon"
           onClick={() => {
-            deleteTask(date, taskId);
+            updateTasks({
+              type: "DELETE_TASK",
+              payload: { date, taskId },
+            });
           }}
         />
         <input
           type="checkbox"
           checked={isCompleted}
           onClick={() => {
-            toggleTaskCompletion(date, taskId);
+            updateTasks({
+              type: "TOGGLE_TASK_COMPLETION",
+              payload: { date, taskId },
+            });
           }}
         />
       </div>
