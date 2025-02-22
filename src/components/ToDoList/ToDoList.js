@@ -48,8 +48,8 @@ export function ToDoList() {
     };
   }
   function moveTaskToNewDate(state, date, taskId, newDate, taskDescription) {
-    deleteTask(state, { date, taskId });
-    addTask(state, { date: newDate, taskDescription });
+    state = deleteTask(state, { date, taskId });
+    return addTask(state, { date: newDate, taskDescription });
   }
   function taskReducer(state, action) {
     const { type, payload } = action;
