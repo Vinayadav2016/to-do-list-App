@@ -1,37 +1,50 @@
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
-import { format } from "date-fns";
-import { useState } from "react";
+import { format, isValid, parse } from "date-fns";
+import { useEffect, useState } from "react";
 import "./DateContainer.scss";
 import { ErrorMsg } from "../errorMsg/ErrorMsg.js";
 export function DateContainer({
-  date,
+  date = format(new Date(), "dd/MM/yyyy"),
   setDate,
   disabled = {},
-  errorMsg = "",
   searchIcon = false,
 }) {
   const [showDayPicker, setShowDayPicker] = useState(false);
+  const [tempDate, setTempDate] = useState(date);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    const setTimeOutId = setTimeout(() => {
+      if (tempDate && isValid(parse(tempDate, "dd/MM/yyyy", new Date()))) {
+        setDate(tempDate);
+        setErrorMsg("");
+      } else if (tempDate) {
+        setErrorMsg("Enter a valid date");
+      } else {
+        setDate(null);
+        setErrorMsg("");
+      }
+    }, 500);
+    return () => clearTimeout(setTimeOutId); // cleanup function to prevent memory leak when component is unmounted.
+  }, [tempDate]);
+
   const handleDayPickerSelect = (date) => {
-    date = format(date, "dd/MM/yyyy");
-    setDate(date);
+    const tempDate = format(date, "dd/MM/yyyy");
+    setTempDate(tempDate);
     setShowDayPicker(false);
   };
   const handleOnChangeDateInput = (e) => {
     let tempDate = e.target.value;
-    setDate(tempDate);
-
-    // if (isValid(parse(tempDate, "dd/MM/yyyy", new Date()))) {
-    //   setDate(tempDate);
-    // }
+    setTempDate(tempDate);
   };
   return (
     <div className="date-container">
       <input
-        className={searchIcon ? "search-icon" : ""}
+        className={"dateInputField" + (searchIcon ? " search-icon" : "")}
         type="text"
         placeholder="dd/MM/yyyy"
-        value={date}
+        value={tempDate}
         onClick={() => {
           setShowDayPicker(true);
         }}
@@ -39,7 +52,7 @@ export function DateContainer({
         onChange={handleOnChangeDateInput}
       />
       <ErrorMsg errorMsg={errorMsg} />
-      {showDayPicker && (
+      {!searchIcon && showDayPicker && (
         <DayPicker
           className="day-picker"
           mode="single"

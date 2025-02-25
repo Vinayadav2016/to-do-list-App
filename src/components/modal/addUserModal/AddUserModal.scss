@@ -1,0 +1,73 @@
+@import "../../../colors.scss";
+
+.add-user-modal-container-wrapper {
+  width: 70%;
+  max-width: 500px;
+  background: linear-gradient(to bottom, $secondary, $tertiary);
+  padding: 0.2rem;
+  border-radius: 0.8rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .modal-container {
+    width: 100%;
+    background-color: $primary;
+    color: $text-primary-color;
+    border-radius: 0.8rem;
+    padding: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    // z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    .modal-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bolder;
+    }
+    input {
+      width: 70%;
+      padding: 0.4rem;
+      border: 0.2rem solid $secondary;
+      border-radius: 0.8rem;
+    }
+    input::placeholder {
+      color: $primary;
+    }
+    input:focus {
+      border: 0.2rem solid $tertiary;
+      outline: none;
+    }
+    button {
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: $text-primary-color;
+    }
+    .close-btn:hover {
+      color: $text-secondary-color;
+    }
+    .add-btn {
+      background-color: $text-primary-color;
+      color: $primary;
+      font-weight: bolder;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .add-btn:hover {
+      background-color: $tertiary;
+      color: $text-primary-color;
+    }
+  }
+}

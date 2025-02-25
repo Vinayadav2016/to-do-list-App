@@ -1,9 +1,10 @@
 import { format, isValid, parse, isBefore } from "date-fns";
 import { useState, useContext } from "react";
-import { TaskContext } from "../../../ToDoList";
+
 import "./InputField.scss";
 import { DateContainer } from "../../../components/dateContainer/DateContainer";
 import { ErrorMsg } from "../../../components/errorMsg/ErrorMsg.js";
+import { TaskContext } from "../../../../../App.js";
 
 export function InputField(props) {
   const {
@@ -13,7 +14,7 @@ export function InputField(props) {
     taskId = null,
     currentTaskDescription = "",
   } = props;
-  const { updateTasks } = useContext(TaskContext);
+  const { updateTasks, selectedUserId } = useContext(TaskContext);
 
   const [date, setDate] = useState(currentDate);
   const [errorMsg, setErrorMsg] = useState("");
@@ -27,8 +28,9 @@ export function InputField(props) {
   };
 
   const handleAddTask = () => {
+    console.log("handleAddTask");
     if (taskDescription.trim() === "") {
-      setErrorMsg("Task description cannot be empty");
+      setErrorMsg("Enter task description");
       return; // error show ka code
     }
     if (!isValid(parse(date, "dd/MM/yyyy", new Date()))) {
@@ -45,10 +47,19 @@ export function InputField(props) {
     if (isEdit) {
       updateTasks({
         type: "EDIT_TASK",
-        payload: { date: currentDate, taskId, taskDescription, newDate: date },
+        payload: {
+          userId: selectedUserId,
+          date: currentDate,
+          taskId,
+          taskDescription,
+          newDate: date,
+        },
       });
     } else {
-      updateTasks({ type: "ADD_TASK", payload: { date, taskDescription } });
+      updateTasks({
+        type: "ADD_TASK",
+        payload: { userId: selectedUserId, date, taskDescription },
+      });
     }
     closeAddTaskDialog();
   };
@@ -57,6 +68,7 @@ export function InputField(props) {
   };
   return (
     <div className="input-field">
+      <ErrorMsg errorMsg={errorMsg} />
       <input
         className="task-input"
         type="text"
@@ -64,7 +76,11 @@ export function InputField(props) {
         value={taskDescription}
         onChange={handleOnChangeTask}
       />
-
+      <DateContainer
+        date={date}
+        setDate={setDate}
+        disabled={{ before: new Date() }}
+      />
       <div className="btn-container">
         <button className="add-btn" onClick={handleAddTask}>
           {isEdit ? "Edit" : "Add"} Task
@@ -72,13 +88,7 @@ export function InputField(props) {
         <button className="cancel-btn" onClick={closeAddTaskDialog}>
           Cancel
         </button>
-        <ErrorMsg errorMsg={errorMsg} />
       </div>
-      <DateContainer
-        date={date}
-        setDate={setDate}
-        disabled={{ before: new Date() }}
-      />
     </div>
   );
 }
