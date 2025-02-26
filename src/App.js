@@ -120,7 +120,6 @@ function App() {
     });
     return filteredUsers;
   }
-  console.log(JSON.stringify(tasks), JSON.stringify(users));
   return (
     <div className="App">
       <BrowserRouter>
