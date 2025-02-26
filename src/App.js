@@ -8,10 +8,108 @@ import { Home } from "./components/home/Home.js";
 import { format, addDays } from "date-fns";
 
 export const TaskContext = createContext();
+
+const dummyUserData = [
+  { userName: "Vinay", userId: 0 },
+  { userName: "Aarav", userId: 1 },
+  { userName: "Sneha", userId: 2 },
+  { userName: "Rahul", userId: 3 },
+  { userName: "Priya", userId: 4 },
+];
+const dummyTasks = [
+  {
+    "26/02/2025": [
+      { taskDescription: "Buy groceries", isCompleted: false },
+      { taskDescription: "Complete React project", isCompleted: true },
+      { taskDescription: "Write a blog post", isCompleted: false },
+      { taskDescription: "Attend team meeting", isCompleted: true },
+      { taskDescription: "Water the plants", isCompleted: false },
+    ],
+    "27/02/2025": [
+      { taskDescription: "Go for a run", isCompleted: false },
+      { taskDescription: "Read a book", isCompleted: false },
+      { taskDescription: "Plan weekend trip", isCompleted: true },
+      { taskDescription: "Review pull requests", isCompleted: false },
+      { taskDescription: "Cook a new recipe", isCompleted: true },
+    ],
+    "28/02/2025": [
+      { taskDescription: "Finish DSA practice", isCompleted: false },
+      { taskDescription: "Call a friend", isCompleted: true },
+      { taskDescription: "Watch a tutorial on Redux", isCompleted: false },
+      { taskDescription: "Update resume", isCompleted: false },
+      { taskDescription: "Clean the workspace", isCompleted: true },
+    ],
+  },
+  {
+    "26/02/2025": [
+      { taskDescription: "Buy groceries", isCompleted: false },
+      { taskDescription: "Complete React project", isCompleted: true },
+    ],
+    "27/02/2025": [
+      { taskDescription: "Go for a run", isCompleted: false },
+      { taskDescription: "Read a book", isCompleted: false },
+    ],
+    "28/02/2025": [
+      { taskDescription: "Finish DSA practice", isCompleted: false },
+      { taskDescription: "Call a friend", isCompleted: true },
+    ],
+  },
+  {
+    "26/02/2025": [
+      { taskDescription: "Buy groceries", isCompleted: false },
+      { taskDescription: "Complete React project", isCompleted: true },
+      { taskDescription: "Write a blog post", isCompleted: false },
+      { taskDescription: "Attend team meeting", isCompleted: true },
+      { taskDescription: "Water the plants", isCompleted: false },
+    ],
+    "27/02/2025": [
+      { taskDescription: "Go for a run", isCompleted: false },
+      { taskDescription: "Read a book", isCompleted: false },
+      { taskDescription: "Plan weekend trip", isCompleted: true },
+      { taskDescription: "Review pull requests", isCompleted: false },
+      { taskDescription: "Cook a new recipe", isCompleted: true },
+    ],
+    "28/02/2025": [
+      { taskDescription: "Finish DSA practice", isCompleted: false },
+      { taskDescription: "Call a friend", isCompleted: true },
+      { taskDescription: "Watch a tutorial on Redux", isCompleted: false },
+      { taskDescription: "Update resume", isCompleted: false },
+      { taskDescription: "Clean the workspace", isCompleted: true },
+    ],
+  },
+  {
+    "26/02/2025": [
+      { taskDescription: "Buy groceries", isCompleted: false },
+      { taskDescription: "Complete React project", isCompleted: true },
+    ],
+    "27/02/2025": [
+      { taskDescription: "Go for a run", isCompleted: false },
+      { taskDescription: "Read a book", isCompleted: false },
+    ],
+    "28/02/2025": [
+      { taskDescription: "Finish DSA practice", isCompleted: false },
+      { taskDescription: "Call a friend", isCompleted: true },
+    ],
+  },
+  {
+    "26/02/2025": [
+      { taskDescription: "Buy groceries", isCompleted: false },
+      { taskDescription: "Complete React project", isCompleted: true },
+    ],
+    "27/02/2025": [
+      { taskDescription: "Go for a run", isCompleted: false },
+      { taskDescription: "Read a book", isCompleted: false },
+    ],
+    "28/02/2025": [
+      { taskDescription: "Finish DSA practice", isCompleted: false },
+      { taskDescription: "Call a friend", isCompleted: true },
+    ],
+  },
+];
 function App() {
-  const [users, addUser] = useState([]);
+  const [users, addUser] = useState(dummyUserData);
   const [selectedUser, setSelectedUser] = useState(null); // {userName: '', userId: ''}
-  const [tasks, updateTasks] = useReducer(taskReducer, []);
+  const [tasks, updateTasks] = useReducer(taskReducer, dummyTasks);
 
   function getFilteredUserByDate(date) {
     const filteredUserId = tasks.reduce((acc, user, index) => {
@@ -22,7 +120,7 @@ function App() {
     });
     return filteredUsers;
   }
-
+  console.log(JSON.stringify(tasks), JSON.stringify(users));
   return (
     <div className="App">
       <BrowserRouter>
