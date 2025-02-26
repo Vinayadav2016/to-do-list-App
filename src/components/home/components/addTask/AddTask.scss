@@ -1,19 +1,20 @@
-@import "../../../../colors.scss";
+@import "../../../../main.scss";
 
 .add-task-container {
   margin: 0.4rem 0;
 }
 .add-task-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 100%;
+  justify-content: flex-end;
   .add-task-btn {
     display: flex;
     align-items: center;
     font-weight: bolder;
     cursor: pointer;
     color: $text-tertiary-color;
+    &:hover {
+      color: $text-primary-color;
+    }
     .plus-icon {
       font-size: 2rem;
       margin-right: 0.4rem;
@@ -21,8 +22,21 @@
     .add-task-text {
       font-size: 1.6rem;
     }
-  }
-  .add-task-btn:hover {
-    color: $text-primary-color;
+    @include breakpoint(small) {
+      .plus-icon {
+        font-size: 1.4rem;
+      }
+      .add-task-text {
+        font-size: 1rem;
+      }
+    }
+    @include breakpoint(medium) {
+      .plus-icon {
+        font-size: 1.6rem;
+      }
+      .add-task-text {
+        font-size: 1.2rem;
+      }
+    }
   }
 }

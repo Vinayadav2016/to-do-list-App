@@ -1,0 +1,25 @@
+$primary: rgb(5, 8, 22);
+$primary-light: rgb(255, 255, 255, 0.1);
+$secondary: rgb(4, 233, 250);
+$tertiary: #915eff;
+
+$text-primary-color: white;
+$text-secondary-color: rgb(4, 233, 250);
+$text-tertiary-color: #915eff;
+$text-error-color: #dd4b39;
+
+@mixin breakpoint($point) {
+  @if $point == small {
+    @media screen and (max-width: 599px) {
+      @content;
+    }
+  } @else if $point == medium {
+    @media screen and (min-width: 600px) and (max-width: 1023px) {
+      @content;
+    }
+  } @else if $point == large {
+    @media screen and (min-width: 1024px) {
+      @content;
+    }
+  }
+}

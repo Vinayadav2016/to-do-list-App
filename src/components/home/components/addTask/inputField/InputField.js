@@ -28,7 +28,6 @@ export function InputField(props) {
   };
 
   const handleAddTask = () => {
-    console.log("handleAddTask");
     if (taskDescription.trim() === "") {
       setErrorMsg("Enter task description");
       return; // error show ka code

@@ -1,14 +1,12 @@
-@import "../../../../colors.scss";
+@import "../../../../main.scss";
 
 .task-list-container {
   margin-top: 0.4rem;
-  .task-container:nth-of-type(1) {
-    color: $text-primary-color;
-    font-weight: bold;
+  .no-task-msg {
+    text-align: center;
+    margin-top: 1rem;
     font-size: 1.2rem;
-  }
-  .task-container:last-child {
-    margin-bottom: 1rem;
+    color: $text-primary-color;
   }
 
   .task-container {
@@ -16,10 +14,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.2rem;
+    padding: 0.8rem;
     font-weight: bold;
     font-size: 1.2rem;
     color: $text-tertiary-color;
+    border-bottom: 0.1rem solid $text-secondary-color;
+    &:nth-of-type(1) {
+      color: $text-primary-color;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    &:last-child {
+      margin-bottom: 1rem;
+      border-bottom: 0;
+    }
     .edit-task-container {
       width: 70%;
       min-width: 100px;
@@ -57,6 +65,38 @@
     }
   }
   .completed {
-    text-decoration: line-through;
+    text-decoration: 0.1rem line-through $text-tertiary-color;
+  }
+  @include breakpoint(small) {
+    .no-task-msg {
+      font-size: 0.8rem;
+    }
+    .task-container {
+      font-size: 0.8rem;
+      &:nth-of-type(1) {
+        font-size: 0.8rem;
+      }
+      .edit-task-container {
+        .icon {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+  @include breakpoint(medium) {
+    .no-task-msg {
+      font-size: 1rem;
+    }
+    .task-container {
+      font-size: 1rem;
+      &:nth-of-type(1) {
+        font-size: 1rem;
+      }
+      .edit-task-container {
+        .icon {
+          font-size: 1.4rem;
+        }
+      }
+    }
   }
 }

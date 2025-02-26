@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { InputField } from "./inputField/InputField.js";
 import "./AddTask.scss";
 import { ModalWrapper } from "../../../modal/ModalWrapper.js";
 import { AddTaskModal } from "../../../modal/addTaskModal/AddTaskModal.js";

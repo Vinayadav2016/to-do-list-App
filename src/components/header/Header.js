@@ -4,14 +4,13 @@ import "./Header.scss";
 import { useContext } from "react";
 import { TaskContext } from "../../App.js";
 export const Header = () => {
-  const { pathname } = useLocation();
-  const { setSelectedUserId } = useContext(TaskContext);
+  const { setSelectedUser } = useContext(TaskContext);
   return (
     <header className="header">
       <Link
         to="/"
         className="logo-container"
-        onClick={() => setSelectedUserId(null)}
+        onClick={() => setSelectedUser(null)}
       >
         <img src={logo} alt="To DO List" />
         To DO APP
@@ -22,7 +21,7 @@ export const Header = () => {
           to="/today"
           className="nav-link"
           onClick={() => {
-            setSelectedUserId(null);
+            setSelectedUser(null);
           }}
         >
           Today
@@ -31,7 +30,7 @@ export const Header = () => {
           to="/tomorrow"
           className="nav-link"
           onClick={() => {
-            setSelectedUserId(null);
+            setSelectedUser(null);
           }}
         >
           Tomorrow

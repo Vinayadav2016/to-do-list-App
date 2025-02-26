@@ -1,4 +1,4 @@
-@import "../../colors.scss";
+@import "../../main.scss";
 .home-container {
   flex: 1;
   display: flex;
@@ -13,22 +13,77 @@
     padding-right: 0;
   }
   .user-container {
+    position: relative;
     width: 70%;
     background-color: $primary-light;
     border-radius: 1rem;
     margin: 1rem 0;
     padding: 0 4rem;
     .user-container-header {
+      margin-top: 1rem;
+      width: 100%;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-start;
+      .selected-user-name {
+        display: none;
+        text-align: center;
+        width: 100%;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-right: 0.4rem;
+        color: $text-primary-color;
+        text-transform: capitalize;
+      }
     }
-    .selected-user-msg {
-      display: flex;
-      height: 100%;
-      justify-content: center;
-      align-items: center;
+    .select-user-msg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       color: white;
+      font-size: 1rem;
+    }
+  }
+  @include breakpoint(small) {
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: flex-start;
+    padding: 0 1rem;
+    .side-nav-container-wrapper {
+      width: 100%;
+    }
+    .user-container {
+      width: 100%;
+      flex-grow: 1;
+      padding: 0 1rem;
+      margin: 0.4rem 0;
+      .user-container-header {
+        .selected-user-name {
+          display: block;
+        }
+      }
+    }
+  }
+  @include breakpoint(medium) {
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: flex-start;
+    padding: 0 2rem;
+    .side-nav-container-wrapper {
+      width: 100%;
+    }
+    .user-container {
+      width: 100%;
+      flex-grow: 1;
+      padding: 0 2rem;
+      margin: 0.8rem 0;
+      .user-container-header {
+        .selected-user-name {
+          display: block;
+        }
+      }
     }
   }
 }

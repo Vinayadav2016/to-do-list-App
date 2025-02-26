@@ -1,15 +1,26 @@
-@import "../../colors.scss";
+@import "../../main.scss";
 .footer {
   background-color: $primary-light;
   color: $text-primary-color;
-  text-align: end;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   width: 100%;
   margin-top: 2rem;
   padding: 0.8rem 2rem;
   z-index: 100;
+  font-size: 1.2rem;
   a {
     color: $text-secondary-color;
     text-decoration: none;
     margin-left: 0.4rem;
+  }
+  @include breakpoint(small) {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+  }
+  @include breakpoint(medium) {
+    margin-top: 1.5rem;
+    font-size: 1rem;
   }
 }

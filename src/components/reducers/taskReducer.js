@@ -67,7 +67,6 @@ function addUser(state) {
   return [...state, {}];
 }
 export function taskReducer(state = [], action) {
-  console.log("reducer called");
   const { type, payload } = action;
   switch (type) {
     case "ADD_USER":

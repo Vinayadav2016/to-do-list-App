@@ -11,15 +11,15 @@ export function Home({ readOnly = false, users = [], date = null }) {
   const {
     tasks,
     selectedUserId = null,
-    setSelectedUserId,
+    setSelectedUser,
+    selectedUserName = null,
   } = useContext(TaskContext);
-  const [selectedDate, setSelectedDate] = useState(null);
-  console.log(selectedDate, "selectedDate");
+  const [selectedDate, setSelectedDate] = useState("");
 
   useEffect(() => {
-    setSelectedUserId(null);
+    setSelectedUser(null);
     return () => {
-      setSelectedUserId(null);
+      setSelectedUser(null);
     };
   }, []);
 
@@ -32,11 +32,12 @@ export function Home({ readOnly = false, users = [], date = null }) {
         {selectedUserId === 0 || selectedUserId ? (
           <>
             <div className="user-container-header">
+              <div className="selected-user-name">{selectedUserName}</div>
               {!readOnly && (
                 <DateContainer
                   date={selectedDate}
                   setDate={setSelectedDate}
-                  searchIcon
+                  searchIcon={true}
                 />
               )}
               <AddTask />
@@ -47,7 +48,7 @@ export function Home({ readOnly = false, users = [], date = null }) {
             />
           </>
         ) : (
-          <div className="selected-user-msg">Please select a user</div>
+          <div className="select-user-msg">Please select a user</div>
         )}
       </div>
     </div>

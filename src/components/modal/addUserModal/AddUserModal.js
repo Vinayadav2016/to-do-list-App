@@ -2,20 +2,23 @@ import { useContext, useState } from "react";
 import "./AddUserModal.scss";
 import { TaskContext } from "../../../App";
 export function AddUserModal({ closeModal }) {
-  const [username, setUsername] = useState("");
+  const [userName, setUsername] = useState("");
   const {
     updateTasks,
     addUser: addUserInList,
     users,
-    setSelectedUserId,
+    setSelectedUser,
   } = useContext(TaskContext);
   function addUser() {
-    if (username) {
+    if (userName) {
       updateTasks({ type: "ADD_USER" });
       setUsername("");
-      addUserInList([...users, { username: username, userId: users.length }]);
+      addUserInList([...users, { userName: userName, userId: users.length }]);
       closeModal();
-      setSelectedUserId(users.length);
+      setSelectedUser({
+        selectedUserName: userName,
+        selectedUserId: users.length,
+      });
     }
   }
   return (
@@ -34,7 +37,7 @@ export function AddUserModal({ closeModal }) {
         <input
           type="text"
           placeholder="Enter user name"
-          value={username}
+          value={userName}
           onChange={({ target: { value } }) => setUsername(value)}
         />
         <button className="add-btn" onClick={addUser}>

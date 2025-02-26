@@ -6,7 +6,7 @@ import "./DateContainer.scss";
 import { ErrorMsg } from "../errorMsg/ErrorMsg.js";
 export function DateContainer({
   date = format(new Date(), "dd/MM/yyyy"),
-  setDate,
+  setDate = () => {},
   disabled = {},
   searchIcon = false,
 }) {
@@ -22,7 +22,7 @@ export function DateContainer({
       } else if (tempDate) {
         setErrorMsg("Enter a valid date");
       } else {
-        setDate(null);
+        setDate("");
         setErrorMsg("");
       }
     }, 500);

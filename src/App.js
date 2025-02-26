@@ -10,7 +10,7 @@ import { format, addDays } from "date-fns";
 export const TaskContext = createContext();
 function App() {
   const [users, addUser] = useState([]);
-  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null); // {userName: '', userId: ''}
   const [tasks, updateTasks] = useReducer(taskReducer, []);
 
   function getFilteredUserByDate(date) {
@@ -30,8 +30,8 @@ function App() {
           value={{
             tasks,
             updateTasks,
-            selectedUserId,
-            setSelectedUserId,
+            ...(selectedUser ? selectedUser : {}),
+            setSelectedUser,
             users,
             addUser,
           }}
@@ -43,7 +43,7 @@ function App() {
               path="/today"
               element={
                 <Home
-                  readOnly
+                  readOnly={true}
                   date={format(new Date(), "dd/MM/yyyy")}
                   users={getFilteredUserByDate(
                     format(new Date(), "dd/MM/yyyy")
@@ -56,7 +56,7 @@ function App() {
               path="/tomorrow"
               element={
                 <Home
-                  readOnly
+                  readOnly={true}
                   date={format(addDays(new Date(), 1), "dd/MM/yyyy")}
                   users={getFilteredUserByDate(
                     format(addDays(new Date(), 1), "dd/MM/yyyy")

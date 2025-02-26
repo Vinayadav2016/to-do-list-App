@@ -1,4 +1,4 @@
-@import "../../colors.scss";
+@import "../../main.scss";
 .header {
   z-index: 1000; //it will make header always on top
   background: $primary;
@@ -7,15 +7,15 @@
   width: 100%;
   position: sticky;
   top: 0;
-  padding: 0 20px;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   .logo-container {
     display: flex;
     align-items: center;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: $text-primary-color;
     text-decoration: none;
     cursor: pointer;
@@ -36,7 +36,7 @@
   }
   .nav-link {
     height: 100%;
-    padding: 0 12px;
+    margin-left: 1rem;
     color: $text-primary-color;
     text-decoration: none;
     display: flex;
@@ -44,10 +44,36 @@
     justify-content: center;
     font-size: 1.2rem;
     font-weight: bold;
+    &:hover {
+      color: $text-secondary-color;
+      text-decoration: underline $text-tertiary-color 0.1rem;
+      text-underline-offset: 0.8rem;
+    }
   }
-  .nav-link:hover {
-    color: $text-secondary-color;
-    text-decoration: underline $text-tertiary-color 0.1rem;
-    text-underline-offset: 0.8rem;
+  @include breakpoint(small) {
+    height: 3rem;
+    padding: 0 1rem;
+    .logo-container {
+      font-size: 0.8rem;
+      img {
+        height: 2rem;
+      }
+    }
+    .nav-link {
+      font-size: 0.8rem;
+    }
+  }
+  @include breakpoint(medium) {
+    height: 3.6rem;
+    padding: 0 1.5rem;
+    .logo-container {
+      font-size: 1.2rem;
+      img {
+        height: 2.5rem;
+      }
+    }
+    .nav-link {
+      font-size: 1rem;
+    }
   }
 }

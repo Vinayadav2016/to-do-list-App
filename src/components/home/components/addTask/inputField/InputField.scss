@@ -1,4 +1,4 @@
-@import "../../../../../colors.scss";
+@import "../../../../../main.scss";
 .input-field {
   display: flex;
   flex-wrap: wrap;
@@ -13,10 +13,10 @@
     font-size: 1rem;
     border: 0.2rem solid $secondary;
     border-radius: 0.4rem;
-  }
-  .task-input:focus {
-    border: 0.2rem solid $tertiary;
-    outline: none;
+    &:focus {
+      border: 0.2rem solid $tertiary;
+      outline: none;
+    }
   }
   .btn-container {
     margin-top: 0.8rem;
@@ -30,10 +30,10 @@
       padding: 0.4rem;
       border-radius: 0.4rem;
       margin-left: 0.4rem;
+      &:hover {
+        background-color: $tertiary;
+        color: $text-primary-color;
+      }
     }
-  }
-  button:hover {
-    background-color: $tertiary;
-    color: $text-primary-color;
   }
 }
