@@ -16,6 +16,19 @@ function User({ userId, userName, closeModal = () => {} }) {
     updateUsers,
     updateTasks,
   } = useContext(TaskContext);
+  function deleteUser() {
+    users.splice(userId, 1);
+    updateUsers(
+      users.map((user) => {
+        if (user.userId > userId) {
+          user.userId--;
+        }
+        return user;
+      })
+    );
+    updateTasks(removeUser({ userId: userId }));
+    setSelectedUser(undefined);
+  }
   return (
     <div
       className={"user" + (selectedUserId === userId ? " selected-user" : "")}
@@ -33,16 +46,7 @@ function User({ userId, userName, closeModal = () => {} }) {
         {userName}
       </div>
 
-      {selectedUserId === userId && (
-        <MdDeleteForever
-          onClick={() => {
-            users.splice(userId, 1);
-            updateUsers(users);
-            updateTasks(removeUser({ userId: userId }));
-            setSelectedUser(undefined);
-          }}
-        />
-      )}
+      {selectedUserId === userId && <MdDeleteForever onClick={deleteUser} />}
     </div>
   );
 }
