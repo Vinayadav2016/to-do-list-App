@@ -30,7 +30,7 @@
       color: $text-secondary-color;
       border: none;
       background-color: $primary;
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       margin-right: 1rem;
       font-weight: bold;
       &:hover {
@@ -51,14 +51,24 @@
   }
 
   .user-list {
-    .userName {
-      cursor: pointer;
+    .user {
       width: 100%;
       padding: 1rem;
+
       color: $text-primary-color;
       font-size: 1rem;
       font-weight: bold;
       margin: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: capitalize;
+      * {
+        cursor: pointer;
+      }
+      .user-name {
+        flex: 1;
+      }
     }
     .selected-user {
       background-color: rgb(255, 255, 255, 0.1);

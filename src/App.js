@@ -107,8 +107,8 @@ const dummyTasks = [
   },
 ];
 function App() {
-  const [users, addUser] = useState(dummyUserData);
-  const [selectedUser, setSelectedUser] = useState(null); // {userName: '', userId: ''}
+  const [users, updateUsers] = useState(dummyUserData);
+  const [selectedUser, setSelectedUser] = useState(undefined); // {userName: '', userId: ''}
   const [tasks, updateTasks] = useReducer(taskReducer, dummyTasks);
 
   function getFilteredUserByDate(date) {
@@ -130,7 +130,7 @@ function App() {
             ...(selectedUser ? selectedUser : {}),
             setSelectedUser,
             users,
-            addUser,
+            updateUsers,
           }}
         >
           <Header />

@@ -7,19 +7,19 @@ import { TaskContext } from "../../App.js";
 import { useContext, useEffect, useState } from "react";
 import { DateContainer } from "./components/dateContainer/DateContainer.js";
 
-export function Home({ readOnly = false, users = [], date = null }) {
+export function Home({ readOnly = false, users = [], date = undefined }) {
   const {
     tasks,
-    selectedUserId = null,
+    selectedUserId = undefined,
     setSelectedUser,
-    selectedUserName = null,
+    selectedUserName = undefined,
   } = useContext(TaskContext);
   const [selectedDate, setSelectedDate] = useState("");
 
   useEffect(() => {
-    setSelectedUser(null);
+    setSelectedUser(undefined);
     return () => {
-      setSelectedUser(null);
+      setSelectedUser(undefined);
     };
   }, []);
 

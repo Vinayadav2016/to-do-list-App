@@ -5,21 +5,44 @@ import { AddUserModal } from "../../../modal/addUserModal/AddUserModal.js";
 import { TaskContext } from "../../../../App.js";
 import { UserListModal } from "../../../modal/userListModal/UserListModal.js";
 import { IoMenu } from "react-icons/io5";
+import { MdDeleteForever } from "react-icons/md";
+import { removeUser } from "../../../reducers/taskReducer.js";
 
 function User({ userId, userName, closeModal = () => {} }) {
-  const { setSelectedUser = () => {}, selectedUserId = null } =
-    useContext(TaskContext);
+  const {
+    setSelectedUser = () => {},
+    selectedUserId = undefined,
+    users,
+    updateUsers,
+    updateTasks,
+  } = useContext(TaskContext);
   return (
     <div
-      className={
-        "userName" + (selectedUserId === userId ? " selected-user" : "")
-      }
-      onClick={() => {
-        setSelectedUser({ selectedUserName: userName, selectedUserId: userId });
-        closeModal();
-      }}
+      className={"user" + (selectedUserId === userId ? " selected-user" : "")}
     >
-      {userName}
+      <div
+        className="user-name"
+        onClick={() => {
+          setSelectedUser({
+            selectedUserName: userName,
+            selectedUserId: userId,
+          });
+          closeModal();
+        }}
+      >
+        {userName}
+      </div>
+
+      {selectedUserId === userId && (
+        <MdDeleteForever
+          onClick={() => {
+            users.splice(userId, 1);
+            updateUsers(users);
+            updateTasks(removeUser({ userId: userId }));
+            setSelectedUser(undefined);
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -65,7 +88,7 @@ function UserHeading({
             setShowAddTaskModal(true);
           }}
         >
-          +
+          Add User
         </button>
       )}
     </>

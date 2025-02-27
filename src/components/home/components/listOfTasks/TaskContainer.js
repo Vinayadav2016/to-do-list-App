@@ -6,6 +6,10 @@ import { MdDeleteForever } from "react-icons/md";
 import { AddTaskModal } from "../../../modal/addTaskModal/AddTaskModal.js";
 import { ModalWrapper } from "../../../modal/ModalWrapper.js";
 import { TaskContext } from "../../../../App.js";
+import {
+  deleteTask,
+  toggleTaskCompletion,
+} from "../../../reducers/taskReducer.js";
 
 export function TaskContainer({
   taskData: { taskDescription, isCompleted = false },
@@ -26,23 +30,15 @@ export function TaskContainer({
         />
         <MdDeleteForever
           className="delete-icon"
-          onClick={() => {
-            updateTasks({
-              type: "DELETE_TASK",
-              payload: { userId, date, taskId },
-            });
-          }}
+          onClick={() => updateTasks(deleteTask({ userId, date, taskId }))}
         />
         <input
           type="checkbox"
           className="checkbox"
           checked={isCompleted}
-          onChange={() => {
-            updateTasks({
-              type: "TOGGLE_TASK_COMPLETION",
-              payload: { userId, date, taskId },
-            });
-          }}
+          onChange={() =>
+            updateTasks(toggleTaskCompletion({ userId, date, taskId }))
+          }
         />
       </div>
     );

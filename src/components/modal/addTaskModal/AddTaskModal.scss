@@ -6,7 +6,7 @@
   background: linear-gradient(to bottom, $secondary, $tertiary);
   padding: 0.2rem;
   border-radius: 0.8rem;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

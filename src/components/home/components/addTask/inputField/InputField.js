@@ -5,13 +5,14 @@ import "./InputField.scss";
 import { DateContainer } from "../../../components/dateContainer/DateContainer";
 import { ErrorMsg } from "../../../components/errorMsg/ErrorMsg.js";
 import { TaskContext } from "../../../../../App.js";
+import { addTask, editTask } from "../../../../reducers/taskReducer.js";
 
 export function InputField(props) {
   const {
     setShowInputField,
     isEdit = false,
     currentDate = format(new Date(), "dd/MM/yyyy"),
-    taskId = null,
+    taskId = undefined,
     currentTaskDescription = "",
   } = props;
   const { updateTasks, selectedUserId } = useContext(TaskContext);
@@ -44,21 +45,17 @@ export function InputField(props) {
       return;
     }
     if (isEdit) {
-      updateTasks({
-        type: "EDIT_TASK",
-        payload: {
+      updateTasks(
+        editTask({
           userId: selectedUserId,
           date: currentDate,
           taskId,
           taskDescription,
           newDate: date,
-        },
-      });
+        })
+      );
     } else {
-      updateTasks({
-        type: "ADD_TASK",
-        payload: { userId: selectedUserId, date, taskDescription },
-      });
+      updateTasks(addTask({ userId: selectedUserId, date, taskDescription }));
     }
     closeAddTaskDialog();
   };

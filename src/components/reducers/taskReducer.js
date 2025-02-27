@@ -1,85 +1,86 @@
-function addTask(state, { userId, date = "", taskDescription = "" }) {
-  state[userId] = {
-    ...state[userId],
-    [date]: [
-      ...(state[userId][date] ? state[userId][date] : []),
-      { taskDescription, isCompleted: false },
-    ],
-  };
-  return [...state];
+// Action types
+const ADD_USER = "ADD_USER";
+const ADD_TASK = "ADD_TASK";
+const DELETE_TASK = "DELETE_TASK";
+const TOGGLE_TASK_COMPLETION = "TOGGLE_TASK_COMPLETION";
+const EDIT_TASK = "EDIT_TASK";
+const REMOVE_USER = "REMOVE_USER";
+
+// Action creators
+export function addTask(payload) {
+  return { type: ADD_TASK, payload: payload };
 }
-function deleteTask(state, { userId, date, taskId }) {
-  const tasks = state[userId][date].filter((task, index) => index !== taskId);
-  if (tasks.length === 0) {
-    delete state[userId][date];
-  } else {
-    state[userId] = {
-      ...state[userId],
-      [date]: tasks,
-    };
-  }
-  return [...state];
+export function deleteTask(payload) {
+  return { type: DELETE_TASK, payload: payload };
 }
-function toggleTaskCompletion(state, { userId, date, taskId }) {
-  state[userId] = {
-    ...state[userId],
-    [date]: state[userId][date].map((task, index) =>
-      index === taskId ? { ...task, isCompleted: !task.isCompleted } : task
-    ),
-  };
-  return [...state];
+export function toggleTaskCompletion(payload) {
+  return { type: TOGGLE_TASK_COMPLETION, payload: payload };
 }
-function editTask(state, { userId, date, taskId, taskDescription, newDate }) {
-  state = editTaskDescription(state, userId, date, taskId, taskDescription);
-  if (date !== newDate) {
-    state = moveTaskToNewDate(
-      state,
-      userId,
-      date,
-      taskId,
-      newDate,
-      taskDescription
-    );
-  }
-  return [...state];
+export function editTask(payload) {
+  return { type: EDIT_TASK, payload: payload };
 }
-function editTaskDescription(state, userId, date, taskId, taskDescription) {
-  state[userId] = {
-    ...state[userId],
-    [date]: state[userId][date].map((task, index) =>
-      index === taskId ? { ...task, taskDescription } : task
-    ),
-  };
-  return [...state];
+
+export function addUser() {
+  return { type: ADD_USER };
 }
-function moveTaskToNewDate(
-  state,
-  userId,
-  date,
-  taskId,
-  newDate,
-  taskDescription
-) {
-  state = deleteTask(state, { userId, date, taskId });
-  return addTask(state, { userId, date: newDate, taskDescription });
+export function removeUser(payload) {
+  return { type: REMOVE_USER, payload: payload };
 }
-function addUser(state) {
-  return [...state, {}];
-}
+
+// Reducer
 export function taskReducer(state = [], action) {
-  const { type, payload } = action;
+  const {
+    type,
+    payload: { userId, date, taskId, taskDescription, newDate } = {},
+  } = action;
+  const tempState = [...state];
   switch (type) {
-    case "ADD_USER":
-      return addUser(state);
-    case "ADD_TASK":
-      return addTask(state, payload);
-    case "DELETE_TASK":
-      return deleteTask(state, payload);
-    case "TOGGLE_TASK_COMPLETION":
-      return toggleTaskCompletion(state, payload);
-    case "EDIT_TASK":
-      return editTask(state, payload);
-    default:
-      return state;
+    case ADD_USER:
+      tempState = [...tempState, {}];
+      break;
+    case REMOVE_USER:
+      tempState.splice(userId, 1);
+      break;
+    case ADD_TASK:
+      tempState[userId][date] = [
+        ...(tempState[userId][date] ? tempState[userId][date] : []),
+        { taskDescription: taskDescription, isCompleted: false },
+      ];
+      break;
+
+    case DELETE_TASK:
+      if (tempState[userId][date][taskId]) {
+        tempState[userId][date].splice(taskId, 1);
+        if (tempState[userId][date] && tempState[userId][date].length === 0) {
+          delete tempState[userId][date];
+        }
+      }
+      break;
+
+    case TOGGLE_TASK_COMPLETION:
+      if (tempState[userId][date][taskId])
+        tempState[userId][date][taskId].isCompleted =
+          !tempState[userId][date][taskId].isCompleted;
+      break;
+
+    case EDIT_TASK:
+      // updating task description
+      if (tempState[userId][date][taskId]) {
+        tempState[userId][date][taskId].taskDescription = taskDescription;
+        if (date !== newDate) {
+          // deleting task from old date
+          tempState[userId][date].splice(taskId, 1);
+          if (tempState[userId][date].length === 0) {
+            delete tempState[userId][date];
+          }
+          // adding task to new date
+          tempState[userId][newDate] = [
+            ...(tempState[userId][newDate] ? tempState[userId][newDate] : []),
+            { taskDescription: taskDescription, isCompleted: false },
+          ];
+        }
+      }
+      break;
   }
+  return tempState;
 }

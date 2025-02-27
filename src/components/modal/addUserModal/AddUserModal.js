@@ -1,17 +1,20 @@
 import { useContext, useState } from "react";
 import "./AddUserModal.scss";
 import { TaskContext } from "../../../App";
+import { ErrorMsg } from "../../home/components/errorMsg/ErrorMsg";
+import { addUser } from "../../reducers/taskReducer";
 export function AddUserModal({ closeModal }) {
   const [userName, setUsername] = useState("");
   const {
     updateTasks,
-    addUser: addUserInList,
+    updateUsers: addUserInList,
     users,
     setSelectedUser,
   } = useContext(TaskContext);
+  const [errorMsg, setErrorMsg] = useState("");
   function addUser() {
     if (userName) {
-      updateTasks({ type: "ADD_USER" });
+      updateTasks(addUser);
       setUsername("");
       addUserInList([...users, { userName: userName, userId: users.length }]);
       closeModal();
@@ -19,6 +22,9 @@ export function AddUserModal({ closeModal }) {
         selectedUserName: userName,
         selectedUserId: users.length,
       });
+    } else {
+      setErrorMsg("Please enter user name");
+      return;
     }
   }
   return (
@@ -34,6 +40,7 @@ export function AddUserModal({ closeModal }) {
             X
           </button>
         </div>
+        <ErrorMsg errorMsg={errorMsg} />
         <input
           type="text"
           placeholder="Enter user name"

@@ -10,7 +10,7 @@ export const Header = () => {
       <Link
         to="/"
         className="logo-container"
-        onClick={() => setSelectedUser(null)}
+        onClick={() => setSelectedUser(undefined)}
       >
         <img src={logo} alt="To DO List" />
         To DO APP
@@ -21,7 +21,7 @@ export const Header = () => {
           to="/today"
           className="nav-link"
           onClick={() => {
-            setSelectedUser(null);
+            setSelectedUser(undefined);
           }}
         >
           Today
@@ -30,7 +30,7 @@ export const Header = () => {
           to="/tomorrow"
           className="nav-link"
           onClick={() => {
-            setSelectedUser(null);
+            setSelectedUser(undefined);
           }}
         >
           Tomorrow
