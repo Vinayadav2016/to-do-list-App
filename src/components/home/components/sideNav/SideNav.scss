@@ -3,13 +3,13 @@
 .side-nav-container {
   width: 100%;
   height: 100%;
-  background-color: $primary;
+  background-color: var(--primary);
   .user-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
     .heading {
-      color: $text-secondary-color;
+      color: var(--text-secondary-color);
       font-size: 1.2rem;
       font-weight: bold;
       display: flex;
@@ -21,27 +21,27 @@
     }
     .selected-user-name {
       display: none;
-      color: $text-secondary-color;
+      color: var(--text-secondary-color);
       font-size: 1.2rem;
       font-weight: bold;
     }
     .add-user-btn {
       cursor: pointer;
-      color: $text-secondary-color;
+      color: var(--text-secondary-color);
       border: none;
-      background-color: $primary;
+      background-color: var(--primary);
       font-size: 1.2rem;
       margin-right: 1rem;
       font-weight: bold;
       &:hover {
-        color: $tertiary;
+        color: var(--tertiary);
       }
     }
   }
   .sm-user-heading {
     @extend .user-heading;
     display: none;
-    background-color: $primary;
+    background-color: var(--primary);
     position: fixed;
     height: 2.4rem;
     top: 3rem;
@@ -54,8 +54,7 @@
     .user {
       width: 100%;
       padding: 1rem;
-
-      color: $text-primary-color;
+      color: var(--text-primary-color);
       font-size: 1rem;
       font-weight: bold;
       margin: 1rem 0;
@@ -71,8 +70,8 @@
       }
     }
     .selected-user {
-      background-color: rgb(255, 255, 255, 0.1);
-      color: $text-tertiary-color;
+      background-color: var(--primary-light);
+      color: var(--text-tertiary-color);
     }
   }
   @include breakpoint(small) {

@@ -1,8 +1,26 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import "./Header.scss";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TaskContext } from "../../App.js";
+
+const ThemeToggle = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+    document.documentElement.classList.toggle("light-theme", !isDarkMode);
+  };
+
+  return (
+    <div
+      className={`theme-toggle ${isDarkMode ? "dark" : ""}`}
+      onClick={toggleTheme}
+    >
+      <div className="toggle-circle"></div>
+    </div>
+  );
+};
 export const Header = () => {
   const { setSelectedUser } = useContext(TaskContext);
   return (
@@ -35,6 +53,7 @@ export const Header = () => {
         >
           Tomorrow
         </Link>
+        <ThemeToggle />
       </nav>
     </header>
   );

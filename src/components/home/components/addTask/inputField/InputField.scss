@@ -1,4 +1,3 @@
-@import "../../../../../main.scss";
 .input-field {
   display: flex;
   flex-wrap: wrap;
@@ -11,10 +10,10 @@
     width: 100%;
     padding: 0.4rem;
     font-size: 1rem;
-    border: 0.2rem solid $secondary;
+    border: 0.2rem solid var(--secondary);
     border-radius: 0.4rem;
     &:focus {
-      border: 0.2rem solid $tertiary;
+      border: 0.2rem solid var(--tertiary);
       outline: none;
     }
   }
@@ -22,8 +21,8 @@
     margin-top: 0.8rem;
     button {
       cursor: pointer;
-      color: $primary;
-      background-color: $text-primary-color;
+      color: var(--primary);
+      background-color: var(--text-primary-color);
       font-weight: bold;
       font-size: 1rem;
       border: 0;
@@ -31,8 +30,8 @@
       border-radius: 0.4rem;
       margin-left: 0.4rem;
       &:hover {
-        background-color: $tertiary;
-        color: $text-primary-color;
+        background-color: var(--tertiary);
+        color: var(--text-primary-color);
       }
     }
   }

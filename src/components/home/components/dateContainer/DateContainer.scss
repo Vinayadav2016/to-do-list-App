@@ -6,12 +6,12 @@
   .dateInputField {
     padding: 0.4rem;
     font-size: 1rem;
-    border: 0.16rem solid $secondary;
+    border: 0.16rem solid var(--secondary);
     border-radius: 0.4rem;
     margin-top: 0.6rem;
   }
   .dateInputField:focus {
-    border: 0.16rem solid $tertiary;
+    border: 0.16rem solid var(--tertiary);
     outline: none;
   }
   .search-icon {
@@ -19,7 +19,7 @@
     background: url("../../../../assets/images/search.png") no-repeat left;
     background-size: 15px;
     background-position-x: 0.2rem;
-    color: $text-primary-color;
+    color: var(--text-primary-color);
     width: 10rem;
     @include breakpoint(small) {
       font-size: 0.8rem;

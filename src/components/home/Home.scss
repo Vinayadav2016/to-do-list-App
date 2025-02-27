@@ -8,14 +8,14 @@
   padding-right: 4rem;
   .side-nav-container-wrapper {
     width: 30%;
-    background-color: $primary;
+    background-color: var(--primary);
     padding: 1rem;
     padding-right: 0;
   }
   .user-container {
     position: relative;
     width: 70%;
-    background-color: $primary-light;
+    background-color: var(--primary-light);
     border-radius: 1rem;
     margin: 1rem 0;
     padding: 0 4rem;
@@ -33,7 +33,7 @@
         font-weight: bold;
         font-size: 1.2rem;
         margin-right: 0.4rem;
-        color: $text-primary-color;
+        color: var(--text-primary-color);
         text-transform: capitalize;
       }
     }

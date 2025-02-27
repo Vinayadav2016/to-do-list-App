@@ -1,7 +1,7 @@
 @import "../../main.scss";
 .header {
   z-index: 1000; //it will make header always on top
-  background: $primary;
+  background: var(--primary);
   color: #fff;
   height: 4rem;
   width: 100%;
@@ -16,7 +16,7 @@
     align-items: center;
     font-weight: bold;
     font-size: 1.2rem;
-    color: $text-primary-color;
+    color: var(--text-primary-color);
     text-decoration: none;
     cursor: pointer;
     img {
@@ -33,11 +33,40 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    .theme-toggle {
+      margin-left: 1rem;
+      position: relative;
+      width: 3rem;
+      height: 1.6rem;
+      background: var(--toggle-bg, #ddd);
+      border-radius: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: background 0.3s ease-in-out;
+
+      .toggle-circle {
+        width: 1.2rem;
+        height: 1.2rem;
+        background: var(--toggle-circle, #fff);
+        border-radius: 50%;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      &.dark {
+        --toggle-bg: #333;
+        --toggle-circle: #fd7608;
+
+        .toggle-circle {
+          transform: translateX(1.5rem);
+        }
+      }
+    }
   }
   .nav-link {
     height: 100%;
     margin-left: 1rem;
-    color: $text-primary-color;
+    color: var(--text-primary-color);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -45,8 +74,8 @@
     font-size: 1.2rem;
     font-weight: bold;
     &:hover {
-      color: $text-secondary-color;
-      text-decoration: underline $text-tertiary-color 0.1rem;
+      color: var(--text-secondary-color);
+      text-decoration: underline var(--text-tertiary-color) 0.1rem;
       text-underline-offset: 0.8rem;
     }
   }
@@ -57,6 +86,22 @@
       font-size: 0.8rem;
       img {
         height: 2rem;
+      }
+    }
+    nav {
+      .theme-toggle {
+        width: 2rem;
+        height: 1rem;
+        margin-left: 0.4rem;
+        .toggle-circle {
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+        &.dark {
+          .toggle-circle {
+            transform: translateX(1rem);
+          }
+        }
       }
     }
     .nav-link {
@@ -70,6 +115,22 @@
       font-size: 1.2rem;
       img {
         height: 2.5rem;
+      }
+    }
+    nav {
+      .theme-toggle {
+        width: 2.4rem;
+        height: 1.2rem;
+        margin-left: 0.5rem;
+        .toggle-circle {
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+        &.dark {
+          .toggle-circle {
+            transform: translateX(1.3rem);
+          }
+        }
       }
     }
     .nav-link {

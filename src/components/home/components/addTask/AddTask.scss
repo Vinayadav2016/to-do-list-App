@@ -12,9 +12,9 @@
     align-items: center;
     font-weight: bolder;
     cursor: pointer;
-    color: $text-tertiary-color;
+    color: var(--text-tertiary-color);
     &:hover {
-      color: $text-primary-color;
+      color: var(--text-primary-color);
     }
     .plus-icon {
       font-size: 2rem;

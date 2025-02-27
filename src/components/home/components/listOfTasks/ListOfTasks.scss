@@ -6,7 +6,7 @@
     text-align: center;
     margin-top: 1rem;
     font-size: 1.2rem;
-    color: $text-primary-color;
+    color: var(--text-primary-color);
   }
 
   .task-container {
@@ -17,10 +17,10 @@
     padding: 0.8rem;
     font-weight: bold;
     font-size: 1.2rem;
-    color: $text-tertiary-color;
-    border-bottom: 0.1rem solid $text-secondary-color;
+    color: var(--text-tertiary-color);
+    border-bottom: 0.1rem solid var(--text-secondary-color);
     &:nth-of-type(1) {
-      color: $text-primary-color;
+      color: var(--text-primary-color);
       font-weight: bold;
       font-size: 1.2rem;
     }
@@ -65,7 +65,7 @@
     }
   }
   .completed {
-    text-decoration: 0.1rem line-through $text-tertiary-color;
+    text-decoration: 0.1rem line-through var(--text-tertiary-color);
   }
   @include breakpoint(small) {
     .no-task-msg {

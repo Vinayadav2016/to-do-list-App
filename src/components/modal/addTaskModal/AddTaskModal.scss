@@ -3,7 +3,7 @@
 .add-task-modal-container-wrapper {
   max-width: 70%;
   max-height: 70%;
-  background: linear-gradient(to bottom, $secondary, $tertiary);
+  background: linear-gradient(to bottom, var(--secondary), var(--tertiary));
   padding: 0.2rem;
   border-radius: 0.8rem;
   position: fixed;
@@ -23,7 +23,7 @@
   .modal-container {
     overflow: auto;
     width: 100%;
-    background-color: $primary;
+    background-color: var(--primary);
     color: #fff;
     border-radius: 0.8rem;
     padding: 1rem;

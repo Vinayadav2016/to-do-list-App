@@ -13,7 +13,7 @@
   &::-webkit-scrollbar {
     width: 0;
   }
-  background-color: $primary;
+  background-color: var(--primary);
 
   .modal-container {
     overflow: auto;
@@ -24,7 +24,7 @@
       width: 100%;
       padding: 1rem;
       padding-left: 1.6rem;
-      color: $text-primary-color;
+      color: var(--text-primary-color);
       font-size: 0.8rem;
       font-weight: bold;
       margin: 1rem 0;
@@ -44,8 +44,8 @@
       }
     }
     .selected-user {
-      background-color: rgb(255, 255, 255, 0.1);
-      color: $text-tertiary-color;
+      background-color: var(--primary-light);
+      color: var(--text-tertiary-color);
     }
   }
   @include breakpoint(medium) {

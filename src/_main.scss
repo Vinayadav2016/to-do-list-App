@@ -1,13 +1,26 @@
-$primary: rgb(5, 8, 22);
-$primary-light: rgb(255, 255, 255, 0.1);
-$secondary: rgb(4, 233, 250);
-$tertiary: #915eff;
+:root {
+  --primary: rgb(5, 8, 22);
+  --primary-light: rgb(255, 255, 255, 0.1);
+  --secondary: rgb(4, 233, 250);
+  --tertiary: #915eff;
 
-$text-primary-color: white;
-$text-secondary-color: rgb(4, 233, 250);
-$text-tertiary-color: #915eff;
-$text-error-color: #dd4b39;
+  --text-primary-color: white;
+  --text-secondary-color: rgb(4, 233, 250);
+  --text-tertiary-color: #915eff;
+  --text-error-color: #dd4b39;
+}
 
+.light-theme {
+  --primary: rgb(125, 134, 255);
+  --primary-light: rgb(189, 193, 252);
+  --secondary: rgb(132, 0, 255);
+  --tertiary: #f5f9ff;
+
+  --text-primary-color: rgb(41, 0, 88);
+  --text-secondary-color: rgb(132, 0, 255);
+  --text-tertiary-color: #011746;
+  --text-error-color: #fd0404;
+}
 @mixin breakpoint($point) {
   @if $point == small {
     @media screen and (max-width: 599px) {

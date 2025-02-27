@@ -7,7 +7,7 @@
 }
 .App {
   font-family: "Poppins";
-  background: $primary;
+  background: var(--primary);
   width: 100%;
   min-height: 100vh;
   display: flex;
