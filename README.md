@@ -4,7 +4,7 @@ This project is a fully functional To-Do List application built with React, feat
 
 ## About
 
-This To-Do List application showcases my ability to build scalable, user-friendly applications with React, applying modern development techniques and best practices. It demonstrates effective state management, routing, performance optimization, and now, admin-managed users and data persistence.
+This To-Do List application showcases my ability to build scalable, user-friendly applications with React, applying modern development techniques and best practices. It demonstrates effective state management, routing, performance optimization, and now, admin-managed users.
 
 ## Features
 
