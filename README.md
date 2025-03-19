@@ -1,13 +1,19 @@
 # To-Do List App (React)
 
-This project is a fully functional To-Do List application built with React, demonstrating core front-end development concepts.
+This project is a fully functional To-Do List application built with React, featuring admin-managed users and separate task lists, demonstrating core front-end development concepts and user data management within an organizational context.
 
 ## About
 
-This To-Do List application showcases my ability to build scalable, user-friendly applications with React, applying modern development techniques and best practices. It demonstrates effective state management, routing, and performance optimization.
+This To-Do List application showcases my ability to build scalable, user-friendly applications with React, applying modern development techniques and best practices. It demonstrates effective state management, routing, performance optimization, and now, admin-managed users and data persistence.
 
 ## Features
 
+* **Admin-Managed Users:**
+    * Managers can create and manage user accounts (employees).
+    * No public signup or login; users are created by an administrator.
+* **User-Specific Task Lists:**
+    * Each employee has their own separate to-do list.
+    * Tasks are associated with the assigned employee.
 * **Add Tasks:** Easily add new tasks to your to-do list.
 * **Mark Tasks as Completed:** Toggle task completion status.
 * **Delete Tasks:** Remove tasks from the list.
